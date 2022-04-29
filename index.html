@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="dropdown.css" type="text/css" media="all" />
+    <title>Hangman</title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">HANG MAN</div>
+      <div class="wrap">
+        <section class="container">
+          <div class="dropdown dropdown-dark">
+            <select name="two" class="dropdown-select">
+              <option value="" style="display:none">Categories..</option>
+            </select>
+          </div>
+        </section>
+      </div>
+      <canvas id="canvas" width="180" height="250"></canvas>
+      <div class="score">
+        <a id="hint" onclick="hint()" href="#">Hint</a>
+        <a id="refresh" onclick="render()" href="#">Another Question</a>
+        <span id="score">SCORE:0</span>
+      </div>
+      <div class="question"></div>
+      <div class="letters"></div>
+    </div>
+    <script src="question.js" type="text/javascript" charset="utf-8"></script>
+    <script src="draw.js" type="text/javascript" charset="utf-8"></script>
+    <script src="logic.js" type="text/javascript" charset="utf-8"></script>
+  </body>
+</html>

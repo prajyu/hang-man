@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Tapestry&display=swap');
+
+* {
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to bottom right, #333333,#121212);
+  color: #fff;
+  font-family: 'Tapestry', cursive;
+}
+
+.header {
+  position: relative;
+  top: 0;
+  width: 100%;
+  padding: 60px;
+  margin-top: 60px;
+  font-size: 7rem;
+  letter-spacing: 10px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.main {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.question {
+  position: relative;
+  text-align: center;
+  height: 100px;
+  width: 60%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: 'Libre Bodoni', serif;
+}
+
+.score {
+  display: flex;
+  width: 60%;
+  height: 100px;
+  justify-content: space-between;
+}
+
+#hint, #refresh, #score {
+  position: relative;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 700;
+  margin: 10px;
+}
+
+#score {
+  font-family: "Libre Bodoni";
+}
+
+#canvas {
+  position: relative;
+  height: 50%;
+  text-align: center;
+  width: 70%;
+  margin: 20px;
+  padding: 10px;
+}
+
+.letters {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center
+  width: 100%;
+}
+
+.input {
+  position: relative;
+  height: 60px;
+  width: 50px;
+  font-size: 50px;
+  margin: 4px;
+  text-align: center;
+  background: transparent;
+  caret-color: transparent;
+  border-bottom: 3px solid #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.input:focus {
+  border-bottom: 3px solid #aaa;
+}
+
+.victory {
+  color: #AAFF00 !important;
+}
+
+.input:focus {
+  outline: none;
+}
