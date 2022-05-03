@@ -65,7 +65,6 @@ let hint = (len) =>{
   let elm = document.getElementById(random)
   elm.value = answer[random].toUpperCase()
   elm.dispatchEvent(new Event('keyup')); 
-
 }
 
 let noWhite = (string)=>{ 
@@ -102,7 +101,7 @@ let validate = (e) =>{
   let id = e.target.id 
   e.target.style.color = "#ffffff"
   if(e.target.value === "") return 
-  if(e.target.value.toUpperCase() !== answer[id]){
+  if(!answer.includes(e.target.value.toUpperCase())){
     e.target.style.color = "#d22b2b"
     setTimeout(function() {
       Draw(draws[count])
@@ -110,31 +109,56 @@ let validate = (e) =>{
       e.target.value = ""
       e.target.focus()
     }, 750);
-  } else if(e.target.value.toUpperCase() === answer[id]){
-    e.target.setAttribute("disabled",true)
+  } else if(answer.includes(e.target.value.toUpperCase())){
+    let index = findAllIndex(answer,e.target.value.toUpperCase())
+    let inputAnswer = e.target.value
+    e.target.value = ""
+    index.forEach(j=>{
+      let elm = document.getElementById(j)
+      elm.value = inputAnswer
+      elm.style.color = "#ffffff"
+      elm.setAttribute("disabled",true)
+      isFullAnswer()
+    })
+    e.target.focus()
   }
   
+  isFullAnswer(answer)
+  if(count >= 8){
+    restart()
+  }
+}
+
+let isFullAnswer = (answer) =>{
   if(currentAnswer() === answer){
     let children = document.querySelectorAll('.input')
-    e.target.blur()
     children.forEach(e=>{
       e.classList.add("victory")
     })
     
     setTimeout(function() {
       score +=1
-      document.querySelector('#score').textContent = ``
-      document.querySelector('#score').textContent = `SCORE: ${score}`
+      updateScore(score)
       render()
     }, 1000);
     
   }
-  if(count >= 8){
-    freeze()
-  }
 }
 
-let freeze = () =>{
+let findAllIndex = (search,target) =>{
+  let indices = []
+  for(let i=0;i<search.length;i++){
+    if(search[i] === target) indices = [...indices,i]
+  }
+  return indices
+}
+
+let updateScore = (score) =>{
+  document.querySelector('#score').textContent = ``
+  document.querySelector('#score').textContent = `SCORE: ${score}`
+}
+
+let restart = () =>{
   let inputs = document.querySelectorAll(".inputs")
   inputs.forEach(e=>{
     e.blur()
@@ -143,8 +167,7 @@ let freeze = () =>{
   score = 0
   count = 0
   setTimeout(function() {
-      document.querySelector('#score').textContent = ``
-      document.querySelector('#score').textContent = `SCORE: ${score}`
+      updateScore(score)
       alert(`You Failed Answer was ${answer}`)
       clearCanvas()
       render()
